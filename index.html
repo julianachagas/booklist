@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booklist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Sansita:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Booklist</h1>
+        <form action="" id="search-books">
+          <label for="search-book-title" class="visually-hidden"
+            >Search for a book</label
+          >
+          <input
+            type="text"
+            name="searchBooks"
+            id="search-book-title"          
+            placeholder="Search books..."
+          />
+        </form>
+      </header>
+      <div class="content">
+        <h2>Books to Read</h2>
+        <ul id="book-list">
+          <li>
+            <span class="book-name">Pride and Prejudice</span>
+            <button class="btn delete">delete</button>
+          </li>
+          <li>
+            <span class="book-name">How to Stop Time</span>
+            <button class="btn delete">delete</button>
+          </li>
+          <li>
+            <span class="book-name">The Adventures of Sherlock Holmes</span>
+            <button class="btn delete">delete</button>
+          </li>
+          <li>
+            <span class="book-name">Wuthering Heights</span>
+            <button class="btn delete">delete</button>
+          </li>
+        </ul>        
+        <form class="add-book" id="add-book">
+          <div class="form-field">
+            <input type="checkbox" name="hide-books" id="hide-books">
+            <label for="hide-books">Hide all the books</label>
+          </div>
+          <div class="add-book-field">
+            <label for="add-book-title" class="visually-hidden">Add a book</label>
+            <input
+              type="text"
+              name="add-book-title"
+              id="add-book-title"
+              placeholder="Book title"
+              />
+              <button class="btn">Add</button>
+          </div>
+        </form>
+        <ul class="tabs">
+          <li data-target="#about">About</li>
+          <li data-target="#contact">Contact</li>
+        </ul>
+        <div class="panel" id="about">
+          <p>Made with &#9825; by Juliana Chagas, front-end developer.</p>
+        </div>
+        <div class="panel" id="contact">
+          <ul>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

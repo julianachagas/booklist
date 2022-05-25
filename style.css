@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+:root {
+  font-size: 62.5%;
+  --primary-color: #ed4949;
+  --secondary-color: #74436e;
+  --primary-color-light: #FBE4E4;
+  --primary-color-dark: #E91C1C;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Poppins', sans-serif;  
+  /* background-color: #282E48; */
+  /* background-color: #161C33; */
+} 
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+.container {
+  width: min(60rem, 90%);
+  margin: 5vw auto;   
+}
+
+header {
+  text-align: center;
+  background-color: var(--primary-color-light);
+  border-radius: 10px 10px 0 0;
+  border: 3px solid var(--primary-color-light); 
+  
+}
+
+.content {
+  background-color: #fff;
+  border: 3px solid var(--primary-color-light); 
+  border-radius: 0 0 10px 10px;  
+}
+
+header,
+.content {
+  padding: 3.2rem;  
+}
+
+header h1 {
+  margin-bottom: 2.4rem;
+  font-size: 4rem;
+  font-family: 'Sansita', sans-serif;
+  font-weight: 800;  
+}
+
+header h1,
+.content h2 {
+  color: var(--primary-color);    
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 2.4rem;
+}
+
+input {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+input:focus {
+  border: 1px solid var(--primary-color);
+  outline: 1px solid var(--primary-color);
+}
+
+#book-list li + li {
+  margin-top: 3rem;
+}
+
+#book-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0 1.2rem 2.4rem ;
+  border-left: 4px solid var(--primary-color);
+}
+
+#book-list li:hover {
+  border-color: var(--secondary-color);
+}
+
+#book-list li button {
+  margin-left: 1.2rem;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-size: 1.4rem;
+  transition: all 0.3s ease-in-out;
+  width: fit-content;
+}
+
+.btn:hover {
+  transform: translateY(3px);
+}
+
+.add-book {  
+  margin: 4rem auto 0;  
+}
+
+.add-book-field { 
+  text-align: center;
+  display: flex;
+  justify-content: space-between;  
+  margin-top: 2rem;  
+}
+
+input[type="text"] {
+  width: 80%;
+}
+
+.form-field input[type="checkbox"]{
+  margin-right: 1rem;  
+  accent-color: var(--primary-color);
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.form-field label {
+  font-size: 1.4rem;  
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+}
+
+.add-book button {
+  margin-left: 1.2rem;
+  background-color: var(--primary-color-dark);
+  text-transform: uppercase;  
+  padding: 0.8rem 2.6rem;
+}
+
+.tabs {
+  display: flex;
+  font-size: 1.4rem;
+  margin-top: 4rem;
+}
+
+.tabs li + li {
+  margin-left: 1.6rem;
+}
+
+.tabs li {
+  background-color: rgb(226, 226, 226);
+  color: #000;
+  padding: 1rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.tabs li:hover, li.active {
+  background-color: var(--primary-color-dark);
+  color: #fff;
+}
+
+.panel {
+  margin-top: 2rem;
+  border: 1px solid rgb(192, 192, 192);
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.4rem;
+  display: none;
+}
+
+
+.panel.active {
+  display: block;
+}
+
+
+.panel#contact ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel#contact a {
+  text-decoration: none;
+  color: #000;
+}
+
+.panel#contact a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.panel#contact li + li {
+  margin-left: 1.6rem;
+} 
