@@ -19,13 +19,19 @@ button {
   --secondary-color: #74436e;
   --primary-color-light: #FBE4E4;
   --primary-color-dark: #E91C1C;
+  --background-color: #282E48;
+  /* --background-color: #161C33; */
 }
 
 body {
   font-size: 1.6rem;
   font-family: 'Poppins', sans-serif;  
-  /* background-color: #282E48; */
-  /* background-color: #161C33; */
+  background-color: var(--background-color); 
+  width: 100%;
+  min-height: 100vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } 
 
 .visually-hidden {
@@ -42,33 +48,35 @@ body {
 
 .container {
   width: min(60rem, 90%);
-  margin: 5vw auto;   
+  margin: 5rem auto;    
 }
 
 header {
   text-align: center;
   background-color: var(--primary-color-light);
   border-radius: 10px 10px 0 0;
-  border: 3px solid var(--primary-color-light); 
-  
 }
 
-.content {
-  background-color: #fff;
-  border: 3px solid var(--primary-color-light); 
-  border-radius: 0 0 10px 10px;  
-}
-
-header,
-.content {
+header, .content {
+  border: 3px solid var(--primary-color-light);     
   padding: 3.2rem;  
+}
+
+.content {
+  background-color: #fff;  
+  border-radius: 0 0 10px 10px;  
 }
 
 header h1 {
   margin-bottom: 2.4rem;
-  font-size: 4rem;
+  font-size: 4.2rem;
   font-family: 'Sansita', sans-serif;
   font-weight: 800;  
+}
+
+header h1 svg path {
+  stroke: var(--primary-color-light);
+  fill: var(--primary-color);
 }
 
 header h1,
@@ -139,8 +147,23 @@ input:focus {
   margin-top: 2rem;  
 }
 
+
+
 input[type="text"] {
   width: 80%;
+}
+
+.add-book button {
+  margin-left: 1.2rem;
+  background-color: var(--primary-color-dark);
+  text-transform: uppercase;  
+  padding: 0.8rem 2.6rem;
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  display: none;
 }
 
 .form-field input[type="checkbox"]{
@@ -152,19 +175,6 @@ input[type="text"] {
 
 .form-field label {
   font-size: 1.4rem;  
-}
-
-.form-field {
-  display: flex;
-  align-items: center;
-  display: none;
-}
-
-.add-book button {
-  margin-left: 1.2rem;
-  background-color: var(--primary-color-dark);
-  text-transform: uppercase;  
-  padding: 0.8rem 2.6rem;
 }
 
 .tabs {
@@ -186,26 +196,37 @@ input[type="text"] {
   transition: all 0.3s ease-in-out;
 }
 
-.tabs li:hover, li.active {
+li.active, .tabs li:hover {
   background-color: var(--primary-color-dark);
   color: #fff;
 }
 
 .panel {
   margin-top: 2rem;
-  border: 1px solid rgb(192, 192, 192);
+  border: 1px solid var(--secondary-color);
   padding: 2rem 1rem;
   border-radius: 10px;
   text-align: center;
   font-size: 1.4rem;
   display: none;
+  color: var(--secondary-color);
 }
 
+.panel svg path {
+  fill: var(--secondary-color);
+}
+
+.panel#about p {
+  line-height: 3.6rem;
+}
 
 .panel.active {
   display: block;
 }
 
+.panel a {
+  display: inline-block;
+}
 
 .panel#contact ul {
   display: flex;
@@ -213,28 +234,32 @@ input[type="text"] {
   align-items: center;
 }
 
-.panel#contact a {
-  text-decoration: none;
-  color: #000;
-}
-
-.panel#contact a:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
+.panel#contact li, .panel#contact svg path  {
+  transition: all 0.3s ease-in-out;
 }
 
 .panel#contact li + li {
-  margin-left: 1.6rem;
+  margin-left: 2.4rem;
 } 
 
+.panel#contact li:hover svg path {
+  fill: var(--primary-color-dark)
+}
+
+.panel#contact li:hover {
+  transform: translateY(3px);
+}
+
 .instructions {
-  display: flex;   
+  display: flex;  
   font-size: 1.4rem;  
+  line-height: 1.8rem;
   color: var(--secondary-color);
 }
 
 .instructions svg {
   margin-right: 1.2rem;
+  flex-shrink: 0;
 }
 
 .instructions svg path {
@@ -249,4 +274,31 @@ form .instructions {
 
 form .instructions svg path {
   fill: red;
+}
+
+@media (max-width: 450px) {
+  .add-book-field {
+    flex-direction: column;  
+    justify-content: initial;
+    align-items: initial;  
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  .add-book-field button {
+    width: 100%;
+    margin-left: initial;
+    margin-top: 2rem;
+    padding: 1.2rem 2.6rem;
+  }
+
+  .tabs {
+    justify-content: center;
+  }
+
+  .panel#about p {
+    line-height: initial;
+  }
 }
