@@ -1,11 +1,16 @@
 //delete book
-
 const bookList = document.getElementById('book-list')
+const emptyListInstruction = document.querySelector('#empty-list-instruction')
+const hideBooks = document.querySelector('#hide-books-wrapper')
 
 bookList.addEventListener('click', function (e) {
-  if (e.target.className == 'btn delete') {
+  if (e.target.tagName == 'BUTTON') {
     const listItem = e.target.parentElement
     bookList.removeChild(listItem)
+    if (bookList.children.length === 0) {
+      emptyListInstruction.style.display = 'flex'
+      hideBooks.style.display = 'none'
+    }
   }
 })
 
@@ -15,15 +20,20 @@ const addForm = document.forms['add-book']
 addForm.addEventListener('submit', function (e) {
   e.preventDefault()
   const newBook = addForm.querySelector("input[type='text']").value
+  const inputValidation = addForm.querySelector('#input-validation')
   if (newBook !== '') {
-    createListItem(newBook)
-    addForm.querySelector("input[type='text']").value = ''
+    bookList.append(createBookListItem(newBook))
+    emptyListInstruction.style.display = 'none'
+    inputValidation.style.display = 'none'
+    hideBooks.style.display = 'flex'
+    addForm.querySelector("input[type='text']").value = ''    
   } else {
-    alert('please insert a book title')
+    inputValidation.style.display = 'flex'
+    addForm.querySelector("input[type='text']").focus()
   }
 })
 
-function createListItem(book) {
+function createBookListItem(book) {
   const listItem = document.createElement('li')
   const bookName = document.createElement('span')
   const deleteBtn = document.createElement('button')
@@ -32,7 +42,7 @@ function createListItem(book) {
   deleteBtn.textContent = 'delete'
   bookName.textContent = book
   listItem.append(bookName, deleteBtn)
-  bookList.appendChild(listItem)
+  return listItem
 }
 
 //hide books

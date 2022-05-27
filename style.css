@@ -157,6 +157,7 @@ input[type="text"] {
 .form-field {
   display: flex;
   align-items: center;
+  display: none;
 }
 
 .add-book button {
@@ -225,3 +226,27 @@ input[type="text"] {
 .panel#contact li + li {
   margin-left: 1.6rem;
 } 
+
+.instructions {
+  display: flex;   
+  font-size: 1.4rem;  
+  color: var(--secondary-color);
+}
+
+.instructions svg {
+  margin-right: 1.2rem;
+}
+
+.instructions svg path {
+  fill: var(--secondary-color);
+}
+
+form .instructions {
+  color: red;
+  margin-top: 1.2rem;
+  display: none;
+}
+
+form .instructions svg path {
+  fill: red;
+}
