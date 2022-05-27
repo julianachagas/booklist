@@ -1,15 +1,30 @@
-//delete book
 const bookList = document.getElementById('book-list')
 const emptyListInstruction = document.querySelector('#empty-list-instruction')
 const hideBooks = document.querySelector('#hide-books-wrapper')
+const inputValidation = document.querySelector('#input-validation')
 
+function changeDisplayProperty(element, value) {
+  element.style.display = value
+}
+
+function emptyBookListState() {
+  changeDisplayProperty(emptyListInstruction, 'flex')
+  changeDisplayProperty(hideBooks, 'none')
+}
+
+function notEmptyBookListState() {
+  changeDisplayProperty(emptyListInstruction, 'none')
+  changeDisplayProperty(hideBooks, 'flex')
+}
+
+//delete book
 bookList.addEventListener('click', function (e) {
   if (e.target.tagName == 'BUTTON') {
     const listItem = e.target.parentElement
     bookList.removeChild(listItem)
+    changeDisplayProperty(inputValidation, "none")
     if (bookList.children.length === 0) {
-      emptyListInstruction.style.display = 'flex'
-      hideBooks.style.display = 'none'
+      emptyBookListState()
     }
   }
 })
@@ -17,18 +32,17 @@ bookList.addEventListener('click', function (e) {
 //add book
 
 const addForm = document.forms['add-book']
+
 addForm.addEventListener('submit', function (e) {
   e.preventDefault()
   const newBook = addForm.querySelector("input[type='text']").value
-  const inputValidation = addForm.querySelector('#input-validation')
   if (newBook !== '') {
-    bookList.append(createBookListItem(newBook))
-    emptyListInstruction.style.display = 'none'
-    inputValidation.style.display = 'none'
-    hideBooks.style.display = 'flex'
-    addForm.querySelector("input[type='text']").value = ''    
+    bookList.appendChild(createBookListItem(newBook))
+    notEmptyBookListState()
+    changeDisplayProperty(inputValidation, 'none')
+    addForm.querySelector("input[type='text']").value = ''
   } else {
-    inputValidation.style.display = 'flex'
+    changeDisplayProperty(inputValidation, 'flex')
     addForm.querySelector("input[type='text']").focus()
   }
 })
@@ -47,11 +61,11 @@ function createBookListItem(book) {
 
 //hide books
 const hideCheckBox = document.getElementById('hide-books')
-hideCheckBox.addEventListener('change', function (e) {
+hideCheckBox.addEventListener('change', function () {
   if (hideCheckBox.checked) {
-    bookList.style.display = 'none'
+    changeDisplayProperty(bookList, 'none')
   } else {
-    bookList.style.display = 'initial'
+    changeDisplayProperty(bookList, 'initial')
   }
 })
 
@@ -63,33 +77,61 @@ searchBar.addEventListener('keyup', function (e) {
   books.forEach(book => {
     const bookTitle = book.firstElementChild.textContent.toLowerCase()
     if (!bookTitle.includes(term)) {
-      book.style.display = 'none'
+      changeDisplayProperty(book, 'none')
     } else {
-      book.style.display = 'flex'
+      changeDisplayProperty(book, 'flex')
     }
   })
 })
 
 //tabs
+
+function addClassActive(element) {
+  element.classList.add('active')
+}
+
+function removeClassActive(element) {
+  element.classList.remove('active')
+}
+
 const tabs = document.querySelector('.tabs') //ul
 const panels = document.querySelectorAll('.panel') //panel divs
+const liItems = tabs.querySelectorAll('li')
+
 tabs.addEventListener('click', function (e) {
   if (e.target.tagName == 'LI') {
-    const liItems = tabs.querySelectorAll('li')
     liItems.forEach(item => {
       if (e.target == item) {
-        item.classList.add('active')
+        addClassActive(item)
       } else {
-        item.classList.remove('active')
+        removeClassActive(item)
       }
     })
     const targetPanel = document.querySelector(e.target.dataset.target)
     panels.forEach(panel => {
       if (panel == targetPanel) {
-        panel.classList.add('active')
+        addClassActive(panel)
       } else {
-        panel.classList.remove('active')
+        removeClassActive(panel)
       }
     })
   }
+  changeDisplayProperty(inputValidation, 'none')
+})
+
+function hidePanel() {
+  panels.forEach(panel => {
+    removeClassActive(panel)
+  })
+  liItems.forEach(item => {
+    removeClassActive(item)
+  })
+}
+
+//hide panel when user clicks on the add-books form or search input
+addForm.addEventListener('click', hidePanel)
+searchBar.addEventListener('click', hidePanel)
+//hide input-validation when user clicks on the search input
+searchBar.addEventListener('click', function () {
+  changeDisplayProperty(inputValidation, 'none')
 })
