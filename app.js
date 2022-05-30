@@ -3,18 +3,14 @@ const emptyListInstruction = document.querySelector('#empty-list-instruction')
 const hideBooks = document.querySelector('#hide-books-wrapper')
 const inputValidation = document.querySelector('#input-validation')
 
-function changeDisplayProperty(element, value) {
-  element.style.display = value
-}
-
 function emptyBookListState() {
-  changeDisplayProperty(emptyListInstruction, 'flex')
-  changeDisplayProperty(hideBooks, 'none')
+  emptyListInstruction.classList.add('show')
+  hideBooks.classList.remove('show')
 }
 
 function notEmptyBookListState() {
-  changeDisplayProperty(emptyListInstruction, 'none')
-  changeDisplayProperty(hideBooks, 'flex')
+  emptyListInstruction.classList.remove('show')
+  hideBooks.classList.add('show')
 }
 
 //delete book
@@ -22,7 +18,7 @@ bookList.addEventListener('click', function (e) {
   if (e.target.tagName == 'BUTTON') {
     const listItem = e.target.parentElement
     bookList.removeChild(listItem)
-    changeDisplayProperty(inputValidation, "none")
+    inputValidation.classList.remove('show')
     if (bookList.children.length === 0) {
       emptyBookListState()
     }
@@ -39,10 +35,10 @@ addForm.addEventListener('submit', function (e) {
   if (newBook !== '') {
     bookList.appendChild(createBookListItem(newBook))
     notEmptyBookListState()
-    changeDisplayProperty(inputValidation, 'none')
+    inputValidation.classList.remove('show')
     addForm.querySelector("input[type='text']").value = ''
   } else {
-    changeDisplayProperty(inputValidation, 'flex')
+    inputValidation.classList.add('show')
     addForm.querySelector("input[type='text']").focus()
   }
 })
@@ -62,11 +58,7 @@ function createBookListItem(book) {
 //hide books
 const hideCheckBox = document.getElementById('hide-books')
 hideCheckBox.addEventListener('change', function () {
-  if (hideCheckBox.checked) {
-    changeDisplayProperty(bookList, 'none')
-  } else {
-    changeDisplayProperty(bookList, 'initial')
-  }
+  bookList.classList.toggle('hide', hideCheckBox.checked)
 })
 
 //filter books
@@ -76,23 +68,11 @@ searchBar.addEventListener('keyup', function (e) {
   const books = bookList.querySelectorAll('li')
   books.forEach(book => {
     const bookTitle = book.firstElementChild.textContent.toLowerCase()
-    if (!bookTitle.includes(term)) {
-      changeDisplayProperty(book, 'none')
-    } else {
-      changeDisplayProperty(book, 'flex')
-    }
+    book.classList.toggle('hide', !bookTitle.includes(term))
   })
 })
 
 //tabs
-
-function addClassActive(element) {
-  element.classList.add('active')
-}
-
-function removeClassActive(element) {
-  element.classList.remove('active')
-}
 
 const tabs = document.querySelector('.tabs') //ul
 const panels = document.querySelectorAll('.panel') //panel divs
@@ -101,30 +81,22 @@ const liItems = tabs.querySelectorAll('li')
 tabs.addEventListener('click', function (e) {
   if (e.target.tagName == 'LI') {
     liItems.forEach(item => {
-      if (e.target == item) {
-        addClassActive(item)
-      } else {
-        removeClassActive(item)
-      }
+      item.classList.toggle('active', e.target == item)
     })
     const targetPanel = document.querySelector(e.target.dataset.target)
     panels.forEach(panel => {
-      if (panel == targetPanel) {
-        addClassActive(panel)
-      } else {
-        removeClassActive(panel)
-      }
+      panel.classList.toggle('active', panel == targetPanel)
     })
   }
-  changeDisplayProperty(inputValidation, 'none')
+  inputValidation.classList.remove('show')
 })
 
 function hidePanel() {
   panels.forEach(panel => {
-    removeClassActive(panel)
+    panel.classList.remove('active')
   })
   liItems.forEach(item => {
-    removeClassActive(item)
+    item.classList.remove('active')
   })
 }
 
@@ -133,5 +105,5 @@ addForm.addEventListener('click', hidePanel)
 searchBar.addEventListener('click', hidePanel)
 //hide input-validation when user clicks on the search input
 searchBar.addEventListener('click', function () {
-  changeDisplayProperty(inputValidation, 'none')
+  inputValidation.classList.remove('show')
 })
