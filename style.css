@@ -100,6 +100,10 @@ input:focus {
   outline: 1px solid var(--primary-color);
 }
 
+#book-list.hide {
+  display: none;
+}
+
 #book-list li + li {
   margin-top: 3rem;
 }
@@ -110,6 +114,10 @@ input:focus {
   align-items: center;
   padding: 1.2rem 0 1.2rem 2.4rem ;
   border-left: 4px solid var(--primary-color);
+}
+
+#book-list li.hide {
+  display: none;
 }
 
 #book-list li:hover {
@@ -147,8 +155,6 @@ input:focus {
   margin-top: 2rem;  
 }
 
-
-
 input[type="text"] {
   width: 80%;
 }
@@ -160,10 +166,13 @@ input[type="text"] {
   padding: 0.8rem 2.6rem;
 }
 
-.form-field {
+.form-field {    
+  display: none;
+}
+
+.form-field.show {
   display: flex;
   align-items: center;
-  display: none;
 }
 
 .form-field input[type="checkbox"]{
@@ -250,11 +259,23 @@ li.active, .tabs li:hover {
   transform: translateY(3px);
 }
 
-.instructions {
+.instructions.show, form .instructions.show {
   display: flex;  
   font-size: 1.4rem;  
   line-height: 1.8rem;
+}
+
+.instructions.show {
   color: var(--secondary-color);
+}
+
+form .instructions.show {
+  color: red;
+  margin-top: 1.2rem;
+}
+
+.instructions, form .instructions {
+  display: none;
 }
 
 .instructions svg {
@@ -264,12 +285,6 @@ li.active, .tabs li:hover {
 
 .instructions svg path {
   fill: var(--secondary-color);
-}
-
-form .instructions {
-  color: red;
-  margin-top: 1.2rem;
-  display: none;
 }
 
 form .instructions svg path {
