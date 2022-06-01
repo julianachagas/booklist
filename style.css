@@ -17,22 +17,22 @@ button {
   font-size: 62.5%;
   --primary-color: #ed4949;
   --secondary-color: #74436e;
-  --primary-color-light: #FBE4E4;
-  --primary-color-dark: #E91C1C;
-  --background-color: #282E48;
+  --primary-color-light: #fbe4e4;
+  --primary-color-dark: #e91c1c;
+  --background-color: #282e48;
   /* --background-color: #161C33; */
 }
 
 body {
   font-size: 1.6rem;
-  font-family: 'Poppins', sans-serif;  
-  background-color: var(--background-color); 
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
   width: 100%;
-  min-height: 100vh;  
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-} 
+}
 
 .visually-hidden {
   position: absolute;
@@ -45,10 +45,9 @@ body {
   overflow: hidden;
 }
 
-
 .container {
   width: min(60rem, 90%);
-  margin: 5rem auto;    
+  margin: 5rem auto;
 }
 
 header {
@@ -57,21 +56,22 @@ header {
   border-radius: 10px 10px 0 0;
 }
 
-header, .content {
-  border: 3px solid var(--primary-color-light);     
-  padding: 3.2rem;  
+header,
+.content {
+  border: 3px solid var(--primary-color-light);
+  padding: 3.2rem;
 }
 
 .content {
-  background-color: #fff;  
-  border-radius: 0 0 10px 10px;  
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
 }
 
 header h1 {
   margin-bottom: 2.4rem;
   font-size: 4.2rem;
   font-family: 'Sansita', sans-serif;
-  font-weight: 800;  
+  font-weight: 800;
 }
 
 header h1 svg path {
@@ -81,7 +81,7 @@ header h1 svg path {
 
 header h1,
 .content h2 {
-  color: var(--primary-color);    
+  color: var(--primary-color);
 }
 
 .content h2 {
@@ -112,7 +112,7 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 0 1.2rem 2.4rem ;
+  padding: 1.2rem 0 1.2rem 2.4rem;
   border-left: 4px solid var(--primary-color);
 }
 
@@ -144,29 +144,29 @@ input:focus {
   transform: translateY(3px);
 }
 
-.add-book {  
-  margin: 4rem auto 0;  
+.add-book {
+  margin: 4rem auto 0;
 }
 
-.add-book-field { 
+.add-book-field {
   text-align: center;
   display: flex;
-  justify-content: space-between;  
-  margin-top: 2rem;  
+  justify-content: space-between;
+  margin-top: 2rem;
 }
 
-input[type="text"] {
+input[type='text'] {
   width: 80%;
 }
 
 .add-book button {
   margin-left: 1.2rem;
   background-color: var(--primary-color-dark);
-  text-transform: uppercase;  
+  text-transform: uppercase;
   padding: 0.8rem 2.6rem;
 }
 
-.form-field {    
+.form-field {
   display: none;
 }
 
@@ -175,15 +175,15 @@ input[type="text"] {
   align-items: center;
 }
 
-.form-field input[type="checkbox"]{
-  margin-right: 1rem;  
+.form-field input[type='checkbox'] {
+  margin-right: 1rem;
   accent-color: var(--primary-color);
   width: 1.6rem;
   height: 1.6rem;
 }
 
 .form-field label {
-  font-size: 1.4rem;  
+  font-size: 1.4rem;
 }
 
 .tabs {
@@ -205,7 +205,8 @@ input[type="text"] {
   transition: all 0.3s ease-in-out;
 }
 
-li.active, .tabs li:hover {
+li.active,
+.tabs li:hover {
   background-color: var(--primary-color-dark);
   color: #fff;
 }
@@ -243,25 +244,27 @@ li.active, .tabs li:hover {
   align-items: center;
 }
 
-.panel#contact li, .panel#contact svg path  {
+.panel#contact li,
+.panel#contact svg path {
   transition: all 0.3s ease-in-out;
 }
 
 .panel#contact li + li {
   margin-left: 2.4rem;
-} 
+}
 
 .panel#contact li:hover svg path {
-  fill: var(--primary-color-dark)
+  fill: var(--primary-color-dark);
 }
 
 .panel#contact li:hover {
   transform: translateY(3px);
 }
 
-.instructions.show, form .instructions.show {
-  display: flex;  
-  font-size: 1.4rem;  
+.instructions.show,
+form .instructions.show {
+  display: flex;
+  font-size: 1.4rem;
   line-height: 1.8rem;
 }
 
@@ -274,7 +277,8 @@ form .instructions.show {
   margin-top: 1.2rem;
 }
 
-.instructions, form .instructions {
+.instructions,
+form .instructions {
   display: none;
 }
 
@@ -293,12 +297,12 @@ form .instructions svg path {
 
 @media (max-width: 450px) {
   .add-book-field {
-    flex-direction: column;  
+    flex-direction: column;
     justify-content: initial;
-    align-items: initial;  
+    align-items: initial;
   }
 
-  input[type="text"] {
+  input[type='text'] {
     width: 100%;
   }
 
