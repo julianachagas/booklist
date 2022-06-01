@@ -3,14 +3,22 @@ const emptyListInstruction = document.querySelector('#empty-list-instruction')
 const hideBooks = document.querySelector('#hide-books-wrapper')
 const inputValidation = document.querySelector('#input-validation')
 
+function addShowClass(element) {
+  element.classList.add('show')
+}
+
+function removeShowClass(element) {
+  element.classList.remove('show')
+}
+
 function emptyBookListState() {
-  emptyListInstruction.classList.add('show')
-  hideBooks.classList.remove('show')
+  addShowClass(emptyListInstruction)
+  removeShowClass(hideBooks)
 }
 
 function notEmptyBookListState() {
-  emptyListInstruction.classList.remove('show')
-  hideBooks.classList.add('show')
+  removeShowClass(emptyListInstruction)
+  addShowClass(hideBooks)
 }
 
 //delete book
@@ -18,7 +26,7 @@ bookList.addEventListener('click', function (e) {
   if (e.target.tagName == 'BUTTON') {
     const listItem = e.target.parentElement
     bookList.removeChild(listItem)
-    inputValidation.classList.remove('show')
+    removeShowClass(inputValidation)    
     if (bookList.children.length === 0) {
       emptyBookListState()
     }
@@ -35,10 +43,10 @@ addForm.addEventListener('submit', function (e) {
   if (newBook !== '') {
     bookList.appendChild(createBookListItem(newBook))
     notEmptyBookListState()
-    inputValidation.classList.remove('show')
+    removeShowClass(inputValidation)    
     addForm.querySelector("input[type='text']").value = ''
   } else {
-    inputValidation.classList.add('show')
+    addShowClass(inputValidation)    
     addForm.querySelector("input[type='text']").focus()
   }
 })
@@ -88,7 +96,7 @@ tabs.addEventListener('click', function (e) {
       panel.classList.toggle('active', panel == targetPanel)
     })
   }
-  inputValidation.classList.remove('show')
+  removeShowClass(inputValidation)  
 })
 
 function hidePanel() {
@@ -105,5 +113,5 @@ addForm.addEventListener('click', hidePanel)
 searchBar.addEventListener('click', hidePanel)
 //hide input-validation when user clicks on the search input
 searchBar.addEventListener('click', function () {
-  inputValidation.classList.remove('show')
+  removeShowClass(inputValidation)
 })
