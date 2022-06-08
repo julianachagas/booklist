@@ -20,7 +20,6 @@ button {
   --primary-color-light: #fbe4e4;
   --primary-color-dark: #e91c1c;
   --background-color: #282e48;
-  /* --background-color: #161C33; */
 }
 
 body {
@@ -132,12 +131,23 @@ input:focus {
   padding: 0.8rem 2rem;
   border: none;
   border-radius: 7px;
-  cursor: pointer;
   background-color: var(--secondary-color);
   color: #fff;
-  font-size: 1.4rem;
-  transition: all 0.3s ease-in-out;
   width: fit-content;
+}
+
+.btn, .tabs li {
+  cursor: pointer;
+}
+
+.btn, .form-field label, .tabs, .panel, .instructions.show,
+form .instructions.show {
+  font-size: 1.4rem;
+}
+
+.btn, .tabs li, .panel#contact li,
+.panel#contact svg path {
+  transition: all 0.3s ease-in-out;
 }
 
 .btn:hover {
@@ -182,13 +192,8 @@ input[type='text'] {
   height: 1.6rem;
 }
 
-.form-field label {
-  font-size: 1.4rem;
-}
-
 .tabs {
   display: flex;
-  font-size: 1.4rem;
   margin-top: 4rem;
 }
 
@@ -200,9 +205,6 @@ input[type='text'] {
   background-color: rgb(226, 226, 226);
   color: #000;
   padding: 1rem 1.6rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 
 li.active,
@@ -211,18 +213,23 @@ li.active,
   color: #fff;
 }
 
+.tabs li, .panel {
+  border-radius: 10px;
+}
+
 .panel {
   margin-top: 2rem;
   border: 1px solid var(--secondary-color);
   padding: 2rem 1rem;
-  border-radius: 10px;
   text-align: center;
-  font-size: 1.4rem;
   display: none;
+}
+
+.panel, .instructions.show {
   color: var(--secondary-color);
 }
 
-.panel svg path {
+.panel svg path, .instructions svg path {
   fill: var(--secondary-color);
 }
 
@@ -244,11 +251,6 @@ li.active,
   align-items: center;
 }
 
-.panel#contact li,
-.panel#contact svg path {
-  transition: all 0.3s ease-in-out;
-}
-
 .panel#contact li + li {
   margin-left: 2.4rem;
 }
@@ -264,12 +266,7 @@ li.active,
 .instructions.show,
 form .instructions.show {
   display: flex;
-  font-size: 1.4rem;
   line-height: 1.8rem;
-}
-
-.instructions.show {
-  color: var(--secondary-color);
 }
 
 form .instructions.show {
@@ -285,10 +282,6 @@ form .instructions {
 .instructions svg {
   margin-right: 1.2rem;
   flex-shrink: 0;
-}
-
-.instructions svg path {
-  fill: var(--secondary-color);
 }
 
 form .instructions svg path {
