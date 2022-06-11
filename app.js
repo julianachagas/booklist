@@ -43,8 +43,19 @@ class Store {
 }
 
 class UI {
-  static createBookListItem(bookObject) {
-    const bookList = document.getElementById('book-list')
+  constructor() {
+    this.bookList = document.getElementById('book-list')
+    this.emptyListInstruction = document.querySelector(
+      '#empty-list-instruction'
+    )
+    this.hideBooks = document.querySelector('#hide-books-wrapper')
+    this.tabs = document.querySelector('.tabs')
+    this.panels = document.querySelectorAll('.panel')
+    this.tabsItems = document.querySelectorAll('.tabs li')
+  }
+
+  createBookListItem(bookObject) {
+    //const bookList = document.getElementById('book-list')
     const listItem = document.createElement('li')
     const bookName = document.createElement('span')
     const deleteBtn = document.createElement('button')
@@ -52,50 +63,84 @@ class UI {
     deleteBtn.classList.add('btn', 'delete')
     deleteBtn.textContent = 'delete'
     bookName.textContent = bookObject.title
-    listItem.append(bookName, deleteBtn)    
-    bookList.appendChild(listItem)
+    listItem.append(bookName, deleteBtn)
+    this.bookList.appendChild(listItem)
   }
 
-  static notEmptyBookListState() {
-    const emptyListInstruction = document.querySelector(
-      '#empty-list-instruction'
-    )
-    const hideBooks = document.querySelector('#hide-books-wrapper')
-    emptyListInstruction.classList.remove('show')
-    hideBooks.classList.add('show')
-  }
-
-  static emptyBookListState() {
-    const emptyListInstruction = document.querySelector(
-      '#empty-list-instruction'
-    )
-    const hideBooks = document.querySelector('#hide-books-wrapper') 
-    emptyListInstruction.classList.add('show')
-    hideBooks.classList.remove('show')
-  }
- 
-  static displayBooks() {
-    //get the books stored
-    const storedBooks = Store.getBooks()    
-    if (storedBooks.length !== 0) {
-      //display the books stored
-      storedBooks.forEach(function(book) {
-        UI.createBookListItem(book)
-      }) 
-      //remove initial instructions and show checkbox to hide the books
-      UI.notEmptyBookListState() 
+  addBook() {
+    const title = document.querySelector('#add-book-title').value
+    // validate
+    if (title !== '') {
+      //create book object, instatiate book
+      const newBook = new Book(title)
+      //Add book to UI
+      this.createBookListItem(newBook)
+      //Add book to store
+      Store.addBookToStorage(newBook)
+      this.clearField()
+      this.notEmptyBookListState()
+    } else {
+      this.showInputValidation()
+      this.focusField()
     }
   }
 
-  static clearField() {
+  clearField() {
     document.forms['add-book'].querySelector('#add-book-title').value = ''
   }
 
-  static focusField() {
+  showInputValidation() {
+    const inputValidation = document.querySelector('#input-validation')
+    inputValidation.classList.add('show')
+    setTimeout(() => {
+      inputValidation.classList.remove('show')
+    }, 3000)
+  }
+
+  focusField() {
     document.forms['add-book'].querySelector('#add-book-title').focus()
   }
 
-  static filterBooks(e) {
+  notEmptyBookListState() {
+    this.emptyListInstruction.classList.remove('show')
+    this.hideBooks.classList.add('show')
+  }
+
+  deleteBook(e) {
+    //const bookList = document.getElementById('book-list')
+    if (e.target.classList.contains('delete')) {
+      const listItem = e.target.parentElement
+      const bookTitle = listItem.querySelector('.book-name').textContent
+      //remove from UI
+      listItem.remove()
+      //remove from storage
+      Store.removeBookFromStorage(bookTitle)
+      if (this.bookList.children.length === 0) {
+        this.emptyBookListState()
+      }
+    }
+  }
+
+  emptyBookListState() {
+    this.emptyListInstruction.classList.add('show')
+    this.hideBooks.classList.remove('show')
+  }
+
+  displayBooks() {
+    //get the books stored
+    const storedBooks = Store.getBooks()
+    if (storedBooks.length !== 0) {
+      //display the books stored
+      for (let book of storedBooks) {
+        this.createBookListItem(book)
+      } //forEach doesn't work here, this would be undefined
+      //remove initial instructions and show checkbox to hide the books
+      this.notEmptyBookListState()
+    }
+  }
+
+  filterBooks(e) {
+    const bookList = document.getElementById('book-list')
     const term = e.target.value.toLowerCase()
     const books = bookList.querySelectorAll('li')
     books.forEach(book => {
@@ -104,92 +149,51 @@ class UI {
     })
   }
 
-  static addBook() {
-    const title = document.querySelector('#add-book-title').value
-    // validate
-    if (title !== '') {
-      //create book object, instatiate book
-      const newBook = new Book(title)
-      //Add book to UI
-      UI.createBookListItem(newBook)
-      //Add book to store
-      Store.addBookToStorage(newBook)
-      UI.notEmptyBookListState()
-      UI.clearField()
-    } else {
-      UI.showInputValidation()
-      UI.focusField()
-    }
-  }
-
-  static showInputValidation() {
-    const inputValidation = document.querySelector('#input-validation')
-    inputValidation.classList.add('show')
-    setTimeout(() => {
-      inputValidation.classList.remove('show')
-    }, 3000)
-  }
-
-  static deleteBook(e) {
-    const bookList = document.getElementById('book-list')
-    if (e.target.classList.contains('delete')) {
-      const listItem = e.target.parentElement
-      const bookTitle = listItem.querySelector('.book-name').textContent
-      //remove from UI
-      listItem.remove()
-      //remove from storage
-      Store.removeBookFromStorage(bookTitle)
-      //UI.removeShowClass(inputValidation)
-      if (bookList.children.length === 0) {
-        UI.emptyBookListState()
-      }
-    }
-  }
-
-  static showPanel(e) {
-    const tabs = document.querySelector('.tabs')
-    const panels = document.querySelectorAll('.panel')
-    const tabsItems = tabs.querySelectorAll('li') 
-    if (e.target.tagName == 'LI') {      
-      tabsItems.forEach(item => {
+  showPanel(e) {
+    if (e.target.tagName == 'LI') {
+      this.tabsItems.forEach(item => {
         item.classList.toggle('active', e.target == item)
       })
       const targetPanel = document.querySelector(e.target.dataset.target)
-      panels.forEach(panel => {
+      this.panels.forEach(panel => {
         panel.classList.toggle('active', panel == targetPanel)
       })
     }
   }
 
-  static hidePanel() {
-    const tabs = document.querySelector('.tabs')
-    const panels = document.querySelectorAll('.panel')
-    const tabsItems = tabs.querySelectorAll('li') 
-    panels.forEach(panel => {
+  hidePanel() {
+    this.panels.forEach(panel => {
       panel.classList.remove('active')
     })
-    tabsItems.forEach(item => {
+    this.tabsItems.forEach(item => {
       item.classList.remove('active')
     })
-  } 
+  }
 }
 
+const userInterface = new UI()
 //display books when pages load
-document.addEventListener('DOMContentLoaded', UI.displayBooks)
+document.addEventListener('DOMContentLoaded', function () {
+  userInterface.displayBooks()
+})
 
 //add a book
 const addForm = document.forms['add-book']
 addForm.addEventListener('submit', function (e) {
   e.preventDefault()
-  UI.addBook()
+  userInterface.addBook()
 })
 
-//hide panel when user clicks on the form
-addForm.addEventListener('click', UI.hidePanel)
+addForm.addEventListener('click', function () {
+  userInterface.hidePanel()
+})
 
 //delete book
 const bookList = document.getElementById('book-list')
-bookList.addEventListener('click', UI.deleteBook)
+bookList.addEventListener('click', function (e) {
+  userInterface.deleteBook(e)
+})
+//if puts deleteBook directly, this will point to booklist
 
 //hide books
 const hideCheckBox = document.getElementById('hide-books')
@@ -197,12 +201,14 @@ hideCheckBox.addEventListener('change', function () {
   bookList.classList.toggle('hide', hideCheckBox.checked)
 })
 
-//filter books
 const searchBar = document.getElementById('search-book-title')
-searchBar.addEventListener('keyup', UI.filterBooks)
-searchBar.addEventListener('click', UI.hidePanel)
+searchBar.addEventListener('keyup', userInterface.filterBooks) //this works because filter books doesn't use this keyword
+searchBar.addEventListener('click', function () {
+  userInterface.hidePanel()
+})
 
 //tabs
-const tabs = document.querySelector('.tabs') 
-tabs.addEventListener('click', UI.showPanel)
-
+const tabs = document.querySelector('.tabs')
+tabs.addEventListener('click', function (e) {
+  userInterface.showPanel(e)
+})
