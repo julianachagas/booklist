@@ -1,6 +1,6 @@
 ## BookList 📚
 
-This application allows the user to create and manage a list of books. The goal of this project is to practice DOM (Document Object Model) manipulation and event handling in JavaScript.
+This application allows the user to create and manage a list of books. The goal of this project is to practice DOM (Document Object Model) manipulation,event handling, classes, and local Storage in JavaScript.
 
 ### Status: 
 🚧 *in progress* 🚧
@@ -16,7 +16,7 @@ This application allows the user to create and manage a list of books. The goal 
 - [x] Delete book from the list
 - [x] Search for books in the list
 - [x] Hide the books added
-- [ ] Store the book list (localStorage)
+- [x] Store the book list locally (localStorage)
 
 ### Concepts practiced
 
@@ -26,6 +26,8 @@ This application allows the user to create and manage a list of books. The goal 
 - Event delegation
 - Events: mouse, keyboard, form, and change
 - `.preventDefault()` method
+- localStorage
+- Object Oriented Programming (OOP): classes
 ### Useful resources
 
 - [JavaScript DOM Tutorial by The Net Ninja](https://www.youtube.com/playlist?list=PL4cUxeGkcC9gfoKa5la9dsdCNpuey2s-V)
