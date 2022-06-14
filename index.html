@@ -8,21 +8,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Sansita:wght@800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Sansita:wght@800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
-  <body>
+  <body class="flex-center">
     <div class="container">
       <header>
         <h1>
           Booklist
-          <svg width="27" height="29" viewBox="0 0 27 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.85067 23.1111H26.5V2.88889C26.5 1.29567 25.2043 0 23.6111 0H4.83333C3.09133 0 0.5 1.15411 0.5 4.33333V24.5556C0.5 27.7348 3.09133 28.8889 4.83333 28.8889H26.5V26H4.85067C4.18333 25.9827 3.38889 25.7198 3.38889 24.5556C3.38889 24.4097 3.40189 24.2797 3.42356 24.1612C3.58533 23.3292 4.26711 23.1256 4.85067 23.1111V23.1111ZM8.65822 8.14956C9.25945 7.55598 10.0703 7.22316 10.9152 7.22316C11.76 7.22316 12.5709 7.55598 13.1721 8.14956L13.4957 8.46589L13.8178 8.14956C14.4192 7.55589 15.2303 7.22303 16.0754 7.22303C16.9205 7.22303 17.7316 7.55589 18.3331 8.14956C18.6315 8.43649 18.8688 8.78071 19.0309 9.16157C19.1931 9.54244 19.2766 9.95212 19.2766 10.3661C19.2766 10.78 19.1931 11.1897 19.0309 11.5705C18.8688 11.9514 18.6315 12.2956 18.3331 12.5826L13.4971 17.3333L8.65967 12.5826C8.36104 12.2958 8.12341 11.9517 7.96104 11.5709C7.79868 11.1901 7.71491 10.7804 7.71478 10.3664C7.71464 9.95237 7.79814 9.54261 7.96026 9.16167C8.12238 8.78074 8.35978 8.43648 8.65822 8.14956V8.14956Z" fill="black"/>
-            </svg>            
+          <svg
+            width="27"
+            height="29"
+            viewBox="0 0 27 29"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.85067 23.1111H26.5V2.88889C26.5 1.29567 25.2043 0 23.6111 0H4.83333C3.09133 0 0.5 1.15411 0.5 4.33333V24.5556C0.5 27.7348 3.09133 28.8889 4.83333 28.8889H26.5V26H4.85067C4.18333 25.9827 3.38889 25.7198 3.38889 24.5556C3.38889 24.4097 3.40189 24.2797 3.42356 24.1612C3.58533 23.3292 4.26711 23.1256 4.85067 23.1111V23.1111ZM8.65822 8.14956C9.25945 7.55598 10.0703 7.22316 10.9152 7.22316C11.76 7.22316 12.5709 7.55598 13.1721 8.14956L13.4957 8.46589L13.8178 8.14956C14.4192 7.55589 15.2303 7.22303 16.0754 7.22303C16.9205 7.22303 17.7316 7.55589 18.3331 8.14956C18.6315 8.43649 18.8688 8.78071 19.0309 9.16157C19.1931 9.54244 19.2766 9.95212 19.2766 10.3661C19.2766 10.78 19.1931 11.1897 19.0309 11.5705C18.8688 11.9514 18.6315 12.2956 18.3331 12.5826L13.4971 17.3333L8.65967 12.5826C8.36104 12.2958 8.12341 11.9517 7.96104 11.5709C7.79868 11.1901 7.71491 10.7804 7.71478 10.3664C7.71464 9.95237 7.79814 9.54261 7.96026 9.16167C8.12238 8.78074 8.35978 8.43648 8.65822 8.14956V8.14956Z"
+              fill="black"
+            />
+          </svg>
         </h1>
-        <form action="" id="search-books">
+        <form id="search-books">
           <label for="search-book-title" class="visually-hidden"
             >Search for a book</label
           >
@@ -34,49 +44,33 @@
           />
         </form>
       </header>
-      <div class="content">
-        <h2>Books to Read</h2>
-        <p class="instructions show" id="empty-list-instruction">
+      <main class="content">
+        <h2>Books to read</h2>
+        <div class="instructions show" id="empty-list-instruction">
           <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
+            width="40"
+            height="34"
+            viewBox="0 0 40 34"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M9 18C4.02944 18 0 13.9706 0 9C0 4.02944 4.02944 0 9 0C13.9706 0 18 4.02944 18 9C18 13.9706 13.9706 18 9 18ZM9 16.3636C13.0668 16.3636 16.3636 13.0668 16.3636 9C16.3636 4.93318 13.0668 1.63636 9 1.63636C4.93318 1.63636 1.63636 4.93318 1.63636 9C1.63636 13.0668 4.93318 16.3636 9 16.3636ZM9.00027 13.9077C8.54825 13.9077 8.18182 13.5414 8.18182 13.0896C8.18182 12.6377 8.54825 12.2714 9.00027 12.2714C9.45229 12.2714 9.81872 12.6377 9.81872 13.0896C9.81872 13.5414 9.45229 13.9077 9.00027 13.9077ZM8.18424 4.08956H9.82114V10.635H8.18424V4.08956Z"
+              d="M2.5 5.62994C4.7125 4.70494 7.885 3.70744 10.97 3.39744C14.295 3.06244 17.115 3.55494 18.75 5.27744V29.6424C16.4125 28.3174 13.45 28.1349 10.7175 28.4099C7.7675 28.7099 4.7925 29.5624 2.5 30.4374V5.62994ZM21.25 5.27744C22.885 3.55494 25.705 3.06244 29.03 3.39744C32.115 3.70744 35.2875 4.70494 37.5 5.62994V30.4374C35.205 29.5624 32.2325 28.7074 29.2825 28.4124C26.5475 28.1349 23.5875 28.3149 21.25 29.6424V5.27744ZM20 3.01744C17.5375 0.899944 13.9675 0.584944 10.7175 0.909944C6.9325 1.29244 3.1125 2.58994 0.7325 3.67244C0.514123 3.77176 0.328938 3.93183 0.199053 4.13353C0.0691667 4.33523 6.64286e-05 4.57004 0 4.80994L0 32.3099C5.7905e-05 32.5191 0.0525929 32.7249 0.152793 32.9085C0.252993 33.092 0.397654 33.2475 0.573527 33.3607C0.7494 33.4739 0.950861 33.5412 1.15946 33.5563C1.36806 33.5715 1.57712 33.534 1.7675 33.4474C3.9725 32.4474 7.525 31.2449 10.9675 30.8974C14.49 30.5424 17.4425 31.1149 19.025 33.0899C19.1421 33.2359 19.2905 33.3538 19.4593 33.4347C19.6281 33.5157 19.8128 33.5577 20 33.5577C20.1872 33.5577 20.372 33.5157 20.5407 33.4347C20.7095 33.3538 20.8579 33.2359 20.975 33.0899C22.5575 31.1149 25.51 30.5424 29.03 30.8974C32.475 31.2449 36.03 32.4474 38.2325 33.4474C38.4229 33.534 38.6319 33.5715 38.8405 33.5563C39.0491 33.5412 39.2506 33.4739 39.4265 33.3607C39.6023 33.2475 39.747 33.092 39.8472 32.9085C39.9474 32.7249 39.9999 32.5191 40 32.3099V4.80994C39.9999 4.57004 39.9308 4.33523 39.8009 4.13353C39.6711 3.93183 39.4859 3.77176 39.2675 3.67244C36.8875 2.58994 33.0675 1.29244 29.2825 0.909944C26.0325 0.582444 22.4625 0.899944 20 3.01744Z"
               fill="black"
             />
           </svg>
-          Add a book title in the field below to create your booklist.
-        </p>
-        <ul id="book-list">
-          <!-- <li>
-            <span class="book-name">Pride and Prejudice</span>
-            <button class="btn delete">delete</button>
-          </li>-->
-        </ul>
+          <p>
+            Your booklist is empty. Add a book below to create your booklist.
+          </p>
+        </div>
+        <ul id="book-list"></ul>
+        <div class="hide-books-wrapper">
+          <input type="checkbox" name="hide-books" id="hide-books" />
+          <label for="hide-books">Hide all the books</label>
+        </div>
         <form class="add-book" id="add-book">
-          <div class="form-field" id="hide-books-wrapper">
-            <input type="checkbox" name="hide-books" id="hide-books" />
-            <label for="hide-books">Hide all the books</label>
-          </div>
-          <div class="add-book-field">
-            <label for="add-book-title" class="visually-hidden"
-              >Add a book</label
-            >
-            <input
-              type="text"
-              name="add-book-title"
-              id="add-book-title"
-              placeholder="Book title"
-            />
-            <button class="btn">Add</button>
-          </div>
-          <p class="instructions" id="input-validation">
+          <h2>Add a new book</h2>
+          <div class="validation" id="input-validation">
             <svg
               width="18"
               height="18"
@@ -97,10 +91,52 @@
                 fill="#121313"
               />
             </svg>
-            Empty field! Please enter a book title.
-          </p>
+            <p>Please fill in all fields</p>
+          </div>
+          <div class="validation" id="success-message">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 10.4286L8.538 13L14 7"
+                stroke="black"
+                stroke-linecap="round"
+              />
+              <path
+                d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z"
+                stroke="black"
+              />
+            </svg>
+
+            <p>Book added!</p>
+          </div>
+          <div class="form-wrapper flex-column">
+            <div class="form-group flex-column">
+              <label for="add-book-title">Title</label>
+              <input
+                type="text"
+                name="add-book-title"
+                id="add-book-title"
+                placeholder="Title"
+              />
+            </div>
+            <div class="form-group flex-column">
+              <label for="add-book-author">Author</label>
+              <input
+                type="text"
+                name="add-book-author"
+                id="add-book-author"
+                placeholder="Author"
+              />
+            </div>
+            <button class="btn">Add book</button>
+          </div>
         </form>
-        <ul class="tabs">
+        <ul class="tabs flex">
           <li data-target="#about">About</li>
           <li data-target="#contact">Contact</li>
         </ul>
@@ -108,7 +144,7 @@
           <p>Made with &#9825; by Juliana Chagas, front-end developer.</p>
         </div>
         <div class="panel" id="contact">
-          <ul>
+          <ul class="flex-center">
             <li>
               <a href="https://github.com/julianachagas" target="_blank"
                 ><svg
@@ -139,7 +175,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   aria-labelledby="twitter-link"
                 >
-                  <title id="twitter-link">Visit Juliana Chagas' twitter</title>                  
+                  <title id="twitter-link">Visit Juliana Chagas' twitter</title>
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -161,7 +197,9 @@
                   xmlns="http://www.w3.org/2000/svg"
                   aria-labelledby="linkedin-link"
                 >
-                  <title id="linkedin-link">Visit Juliana Chagas' linkedin</title>
+                  <title id="linkedin-link">
+                    Visit Juliana Chagas' linkedin
+                  </title>
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -173,7 +211,7 @@
             </li>
           </ul>
         </div>
-      </div>
+      </main>
     </div>
     <script src="app.js"></script>
   </body>

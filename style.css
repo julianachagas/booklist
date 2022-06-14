@@ -22,15 +22,31 @@ button {
   --background-color: #282e48;
 }
 
+html {
+  -webkit-text-size-adjust: 100%; /*prevents text size from being automatically adjusted on mobile landscape orientation */
+} 
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   font-size: 1.6rem;
   font-family: 'Poppins', sans-serif;
   background-color: var(--background-color);
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .visually-hidden {
@@ -49,6 +65,53 @@ body {
   margin: 5rem auto;
 }
 
+input {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+input:focus {
+  border: 1px solid var(--primary-color);
+  outline: 1px solid var(--primary-color);
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 7px;
+  background-color: var(--secondary-color);
+  color: #fff;
+  width: fit-content;
+}
+
+.btn,
+.tabs li {
+  cursor: pointer;
+}
+
+.btn,
+.hide-books-wrapper label,
+.tabs,
+.panel,
+.instructions,
+.validation {
+  font-size: 1.4rem;
+}
+
+.btn,
+.tabs li,
+.panel#contact li,
+.panel#contact svg path {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(3px);
+}
+
+/*header*/
+
 header {
   text-align: center;
   background-color: var(--primary-color-light);
@@ -59,11 +122,6 @@ header,
 .content {
   border: 3px solid var(--primary-color-light);
   padding: 3.2rem;
-}
-
-.content {
-  background-color: #fff;
-  border-radius: 0 0 10px 10px;
 }
 
 header h1 {
@@ -83,28 +141,28 @@ header h1,
   color: var(--primary-color);
 }
 
+header input[type='text'] {
+  width: 80%;
+}
+
+/*main: content*/
+.content {
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+}
+
 .content h2 {
   font-size: 2rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.8rem;
 }
 
-input {
-  padding: 1rem;
-  border-radius: 5px;
-  border: 1px solid rgb(192, 192, 192);
-}
-
-input:focus {
-  border: 1px solid var(--primary-color);
-  outline: 1px solid var(--primary-color);
-}
-
+/*booklist*/
 #book-list.hide {
   display: none;
 }
 
 #book-list li + li {
-  margin-top: 3rem;
+  margin-top: 3.2rem;
 }
 
 #book-list li {
@@ -127,93 +185,78 @@ input:focus {
   margin-left: 1.2rem;
 }
 
-.btn {
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 7px;
-  background-color: var(--secondary-color);
-  color: #fff;
-  width: fit-content;
+.book-info {
+  text-transform: capitalize;
 }
 
-.btn, .tabs li {
-  cursor: pointer;
+.book-name {
+  font-size: 1.6rem;
 }
 
-.btn, .form-field label, .tabs, .panel, .instructions.show,
-form .instructions.show {
-  font-size: 1.4rem;
+.book-author {
+  font-style: italic;
+  font-size: 1.5rem;
 }
 
-.btn, .tabs li, .panel#contact li,
-.panel#contact svg path {
-  transition: all 0.3s ease-in-out;
-}
-
-.btn:hover {
-  transform: translateY(3px);
-}
-
-.add-book {
-  margin: 4rem auto 0;
-}
-
-.add-book-field {
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-input[type='text'] {
-  width: 80%;
-}
-
-.add-book button {
-  margin-left: 1.2rem;
-  background-color: var(--primary-color-dark);
-  text-transform: uppercase;
-  padding: 0.8rem 2.6rem;
-}
-
-.form-field {
+/*checkbox: hide books*/
+.hide-books-wrapper {
   display: none;
 }
 
-.form-field.show {
+.hide-books-wrapper.show {
   display: flex;
   align-items: center;
+  margin: 3rem 0;
 }
 
-.form-field input[type='checkbox'] {
+.hide-books-wrapper input[type='checkbox'] {
   margin-right: 1rem;
   accent-color: var(--primary-color);
   width: 1.6rem;
   height: 1.6rem;
 }
 
-.tabs {
-  display: flex;
-  margin-top: 4rem;
+/*add book form*/
+.add-book {
+  margin: 2rem 0 4rem;
 }
 
-.tabs li + li {
-  margin-left: 1.6rem;
+.form-wrapper {
+  gap: 1.8rem;
+}
+
+.form-group {
+  gap: 0.8rem;
+  font-size: 1.6rem;
+}
+
+.add-book .btn {
+  background-color: var(--primary-color-dark);
+  text-transform: uppercase;
+  padding: 1rem;
+  width: 100%;
+}
+
+/*tabs and panels*/
+
+.tabs {
+  gap: 1.6rem;
 }
 
 .tabs li {
-  background-color: rgb(226, 226, 226);
-  color: #000;
-  padding: 1rem 1.6rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 li.active,
 .tabs li:hover {
-  background-color: var(--primary-color-dark);
+  background-color: var(--secondary-color);
   color: #fff;
 }
 
-.tabs li, .panel {
+.tabs li,
+.panel {
   border-radius: 10px;
 }
 
@@ -223,14 +266,6 @@ li.active,
   padding: 2rem 1rem;
   text-align: center;
   display: none;
-}
-
-.panel, .instructions.show {
-  color: var(--secondary-color);
-}
-
-.panel svg path, .instructions svg path {
-  fill: var(--secondary-color);
 }
 
 .panel#about p {
@@ -245,14 +280,12 @@ li.active,
   display: inline-block;
 }
 
-.panel#contact ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.panel svg path {
+  fill: var(--secondary-color);
 }
 
-.panel#contact li + li {
-  margin-left: 2.4rem;
+.panel#contact ul {
+  gap: 2.4rem;
 }
 
 .panel#contact li:hover svg path {
@@ -263,47 +296,71 @@ li.active,
   transform: translateY(3px);
 }
 
-.instructions.show,
-form .instructions.show {
-  display: flex;
-  line-height: 1.8rem;
-}
-
-form .instructions.show {
-  color: red;
-  margin-top: 1.2rem;
-}
-
+/*initial instructions and validation*/
 .instructions,
-form .instructions {
+.validation {
   display: none;
 }
 
-.instructions svg {
+.instructions.show,
+.validation.show {
+  display: flex;  
+}
+
+.instructions {
+  padding: 2rem 0;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.instructions svg path {
+  fill: var(--secondary-color);
+}
+
+.panel,
+.instructions {
+  color: var(--secondary-color);
+}
+
+.validation {
+  line-height: 1.8rem;
+  margin: 2.4rem 0;
+  border: 1px solid;
+  padding: 0.8rem;
+}
+
+.validation svg {
   margin-right: 1.2rem;
   flex-shrink: 0;
 }
 
-form .instructions svg path {
+#input-validation {
+  border-color: red;
+  color: red;
+}
+
+#input-validation svg path {
   fill: red;
 }
 
+#success-message {
+  border-color: green;
+  color: green;
+}
+
+#success-message svg path {
+  stroke: green;
+}
+
+/*media queries*/
 @media (max-width: 450px) {
-  .add-book-field {
-    flex-direction: column;
-    justify-content: initial;
-    align-items: initial;
-  }
+  
 
-  input[type='text'] {
-    width: 100%;
-  }
-
-  .add-book-field button {
-    width: 100%;
-    margin-left: initial;
-    margin-top: 2rem;
-    padding: 1.2rem 2.6rem;
+  .add-book .btn {
+    margin-top: 0.8rem;
   }
 
   .tabs {
