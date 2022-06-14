@@ -38,20 +38,8 @@ class Store {
 }
 
 class UI {
-  constructor() {
-    this.bookList = document.getElementById('book-list')
-    this.emptyListInstruction = document.querySelector(
-      '#empty-list-instruction'
-    )
-    this.hideBooks = document.querySelector('.hide-books-wrapper')
-    this.tabs = document.querySelector('.tabs')
-    this.panels = document.querySelectorAll('.panel')
-    this.tabsItems = document.querySelectorAll('.tabs li')
-    this.inputValidation = document.querySelector('#input-validation')
-    this.successMessage = document.querySelector('#success-message')
-  }
-
-  createBookListItem(bookObject) {
+  static createBookListItem(bookObject) {
+    const bookList = document.getElementById('book-list')
     const listItem = document.createElement('li')
     const bookInfoContainer = document.createElement('div')
     bookInfoContainer.classList.add('book-info', 'flex-column')
@@ -66,77 +54,80 @@ class UI {
     deleteBtn.classList.add('btn', 'delete')
     deleteBtn.textContent = 'delete'
     listItem.append(bookInfoContainer, deleteBtn)
-    this.bookList.appendChild(listItem)
+    bookList.appendChild(listItem)
   }
 
-  addBook() {
+  static addBook() {
     const title = document.querySelector('#add-book-title').value
-    const author = document.querySelector('#add-book-author').value    
+    const author = document.querySelector('#add-book-author').value
+    const inputValidation = document.querySelector('#input-validation')
+    const successMessage = document.querySelector('#success-message')
     if (title !== '' && author !== '') {
       //create book object, instatiate book
       const newBook = new Book(title, author)
       //Add book to UI
-      this.createBookListItem(newBook)
+      UI.createBookListItem(newBook)
       //Add book to store
       Store.addBookToStorage(newBook)
-      this.clearFields()
-      this.notEmptyBookListState()
-      this.focusField()
-      this.showAlert(this.successMessage)
+      UI.clearFields()
+      UI.notEmptyBookListState()
+      UI.focusField()
+      UI.showAlert(successMessage)
     } else {
-      this.showAlert(this.inputValidation)      
+      UI.showAlert(inputValidation)
     }
   }
 
-  clearFields() {
+  static clearFields() {
     document.querySelector('#add-book-title').value = ''
     document.querySelector('#add-book-author').value = ''
   }
 
-  showAlert(element) {
+  static showAlert(element) {
     element.classList.add('show')
     setTimeout(() => {
       element.classList.remove('show')
     }, 3000)
   }
 
-  focusField() {
-    document.forms['add-book'].querySelector('#add-book-title').focus()
+  static focusField() {
+    document.querySelector('#add-book-title').focus()
   }
 
-  notEmptyBookListState() {
-    this.emptyListInstruction.classList.remove('show')
-    this.hideBooks.classList.add('show')
+  static notEmptyBookListState() {
+    document.querySelector('#empty-list-instruction').classList.remove('show')
+    document.querySelector('.hide-books-wrapper').classList.add('show')
   }
 
-  emptyBookListState() {
-    this.emptyListInstruction.classList.add('show')
-    this.hideBooks.classList.remove('show')
+  static emptyBookListState() {
+    document.querySelector('#empty-list-instruction').classList.add('show')
+    document.querySelector('.hide-books-wrapper').classList.remove('show')
   }
 
-  deleteBook(e) {
+  static deleteBook(e) {
+    const bookList = document.getElementById('book-list')
     if (e.target.classList.contains('delete')) {
       const listItem = e.target.parentElement
       const bookTitle = listItem.querySelector('.book-name').textContent
       listItem.remove()
       Store.removeBookFromStorage(bookTitle)
-      if (this.bookList.children.length === 0) {
-        this.emptyBookListState()
+      if (bookList.children.length === 0) {
+        UI.emptyBookListState()
       }
     }
   }
 
-  displayBooks() {
+  static displayBooks() {
     const storedBooks = Store.getBooks()
     if (storedBooks.length !== 0) {
       //display the books stored
-      storedBooks.forEach(book => this.createBookListItem(book))
+      storedBooks.forEach(book => UI.createBookListItem(book))
       //remove initial instructions and show checkbox to hide the books
-      this.notEmptyBookListState()
+      UI.notEmptyBookListState()
     }
   }
 
-  filterBooks(e) {
+  static filterBooks(e) {
     const term = e.target.value.toLowerCase()
     const books = document.querySelectorAll('#book-list li')
     books.forEach(book => {
@@ -147,48 +138,47 @@ class UI {
     })
   }
 
-  showPanel(e) {
+  static showPanel(e) {
+    const panels = document.querySelectorAll('.panel')
+    const tabsItems = document.querySelectorAll('.tabs li')
     if (e.target.tagName == 'LI') {
-      this.tabsItems.forEach(item => {
+      tabsItems.forEach(item => {
         item.classList.toggle('active', e.target === item)
       })
       const targetPanel = document.querySelector(e.target.dataset.target)
-      this.panels.forEach(panel => {
+      panels.forEach(panel => {
         panel.classList.toggle('active', panel === targetPanel)
       })
     }
   }
 
-  hidePanel() {
-    this.panels.forEach(panel => {
+  static hidePanel() {
+    const panels = document.querySelectorAll('.panel')
+    const tabsItems = document.querySelectorAll('.tabs li')
+    panels.forEach(panel => {
       panel.classList.remove('active')
     })
-    this.tabsItems.forEach(item => {
+    tabsItems.forEach(item => {
       item.classList.remove('active')
     })
   }
 }
 
-const userInterface = new UI()
 //display books when page loads
-document.addEventListener('DOMContentLoaded', function () {
-  userInterface.displayBooks()
-})
+document.addEventListener('DOMContentLoaded', UI.displayBooks)
 
 //add a book
 const addForm = document.forms['add-book']
 addForm.addEventListener('submit', function (e) {
   e.preventDefault()
-  userInterface.addBook()
+  UI.addBook()
 })
 
-addForm.addEventListener('click', () => userInterface.hidePanel())
+addForm.addEventListener('click', UI.hidePanel)
 
 //delete book
 const bookList = document.getElementById('book-list')
-bookList.addEventListener('click', function (e) {
-  userInterface.deleteBook(e)
-})
+bookList.addEventListener('click', UI.deleteBook)
 
 //hide books
 const hideCheckBox = document.getElementById('hide-books')
@@ -198,10 +188,9 @@ hideCheckBox.addEventListener('change', () => {
 
 //filter books
 const searchBar = document.getElementById('search-book-title')
-searchBar.addEventListener('keyup', userInterface.filterBooks)
-
-searchBar.addEventListener('click', () => userInterface.hidePanel())
+searchBar.addEventListener('keyup', UI.filterBooks)
+searchBar.addEventListener('click', UI.hidePanel)
 
 //tabs
 const tabs = document.querySelector('.tabs')
-tabs.addEventListener('click', e => userInterface.showPanel(e))
+tabs.addEventListener('click', UI.showPanel)
