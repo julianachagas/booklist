@@ -1,9 +1,8 @@
 ## BookList 📚
 
-This application allows the user to create and manage a list of books. The goal of this project is to practice DOM (Document Object Model) manipulation,event handling, classes, and local Storage in JavaScript.
-
-### Status: 
-🚧 *in progress* 🚧
+This application allows the user to create and manage a list of books. The goal of this project was to practice DOM (Document Object Model) manipulation, event handling, classes, and local Storage in JavaScript.
+### Link: 
+- [Live app](https://julianachagas.github.io/booklist/)
 ### Technologies
 - HTML
 - CSS
@@ -13,6 +12,7 @@ This application allows the user to create and manage a list of books. The goal 
 
 - [x] Add book to the list
   - [x] Validation for empty input field
+  - [x] Message when book is successfully added
 - [x] Delete book from the list
 - [x] Search for books in the list
 - [x] Hide the books added
@@ -31,6 +31,8 @@ This application allows the user to create and manage a list of books. The goal 
 ### Useful resources
 
 - [JavaScript DOM Tutorial by The Net Ninja](https://www.youtube.com/playlist?list=PL4cUxeGkcC9gfoKa5la9dsdCNpuey2s-V)
+
+- [JavaScript BookList App by Brad Traversy](https://www.youtube.com/watch?v=JaMCxVWtW58&t=1397s&ab_channel=TraversyMedia)
 
 - [Bubbling and capturing - JAVASCRIPT.INFO](https://javascript.info/bubbling-and-capturing)
 
