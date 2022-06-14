@@ -1,6 +1,6 @@
 ## BookList 📚
 
-This application allows the user to create and manage a list of books. The goal of this project was to practice DOM (Document Object Model) manipulation, event handling, classes, and local Storage in JavaScript.
+This application allows the user to create and manage a list of books. The goal of this project was to practice DOM (Document Object Model) manipulation, event handling, classes, and localStorage in JavaScript.
 ### Link: 
 - [Live app](https://julianachagas.github.io/booklist/)
 ### Technologies
