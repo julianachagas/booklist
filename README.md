@@ -10,10 +10,10 @@ This application allows the user to create and manage a list of books. The goal 
 
 ### Features
 
-- [x] Add book to the list
+- [x] Add a book to the list: title and author
   - [x] Validation for empty input field
-  - [x] Message when book is successfully added
-- [x] Delete book from the list
+  - [x] Message when a book is successfully added
+- [x] Delete a book from the list
 - [x] Search for books in the list
 - [x] Hide the books added
 - [x] Store the book list locally (localStorage)
